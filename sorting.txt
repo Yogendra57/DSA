@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+//selection sort function
+//selection sort take the minimun and placed it to front and swap the numbers
+void selection_sort(int arr[],int n){
+    for(int i=0;i<=n-2;i++){
+        int mini=i;
+        for(int j=i;j<=n-1;j++){
+            if(arr[j]<arr[mini]){
+                mini=j;
+            }
+            
+        }
+        //Now doing the swaping between mini and the number
+        int temp=arr[mini];
+        arr[mini]=arr[i];
+        arr[i]=temp;
+    }
+};
+//Defining the Bubble sort 
+void Bubble_sort(int arr[],int n){
+    for(int i=n-1;i<=0;i--){
+        int didswap=0;
+        for(int j=0;j<i-1;j++){
+            if(arr[j]>arr[j+1]){
+                int temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+                didswap=1;
+            }
+        }
+        if(didswap==0){
+            break;
+        }
+    }
+}
+void inserstion_sort(int arr[],int n){
+    for(int i=0;i<=n-1;i++){
+        int j=i;
+        while(j>0&&arr[j-1]>arr[j]){
+            int temp=arr[j-1];
+            arr[j-1]=arr[j];
+            arr[j]=temp;
+            j--;
+        }
+    }
+}
+
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];//defining array of size n
+    for(int i=0;i<n;i++)cin>>arr[i];//inputing aray values
+    //Now doing selection sort 
+    selection_sort(arr,n);
+    //Now printing the sorted array
+    cout<<"selection sort"<<endl;
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+    Bubble_sort(arr,n);
+    //Now doing the Bubble sort
+    //Bubble sort is just opposite to bubble sort it compare the first value to the next value if
+    //it greater it will interchange the number and now the it to the next value till end it sort
+    //the array from last
+    cout<<"Bubble sort"<<endl;
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+        }
+        cout<<endl;
+    inserstion_sort(arr,n);//Calling inserstion sort
+    //inserstion sort take one element place it to its correct position
+    cout<<"insertion sort"<<endl;
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
+    return 0;
+}

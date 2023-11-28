@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+// What is Quick Sort?
+/*
+In Quick Sort we take first element from the array and call it 
+as pivot and initialize i , j Pointers which points low and high
+where low is 0th index of array and high points to last index
+of the array.in Merge sort will we find the element which smaller 
+and place it on the left and greaterelements on right by using swap
+function.Doing the same process untill we sort the array.
+*/
+using namespace std;
+//Defining Partition
+int partition(vector<int> &arr,int low,int high){
+    int pivot=arr[low];
+    int i=low;
+    int j=high;
+    while(i<j){
+        while(arr[i]<=pivot &&i<=high-1){
+            i++;
+        }
+        while(arr[j]>pivot && j>=low+1){
+            j--;
+        }
+        if(i<j)swap(arr[i],arr[j]);
+    }
+    swap(arr[low],arr[j]);
+    return j;
+}
+//Defining Quick Sort
+void qs(vector<int> &arr,int low ,int high){
+    if(low<high){
+        int pIndex=partition(arr,low,high);
+        qs(arr,low,pIndex-1);
+        qs(arr,pIndex+1,high);
+    }
+}
+int main(){
+    int n,high;
+    cin>>n>>high;
+    vector<int> arr(n);//defining array of size n
+    for(int i=0;i<n;i++)cin>>arr[i];//inputing aray values
+    qs(arr,0,high);//Calling Quick sort
+    cout<<"Quick sort"<<endl; 
+    //Printing Sorted array
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
